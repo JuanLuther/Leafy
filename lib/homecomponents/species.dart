@@ -10,6 +10,7 @@ class Species extends StatelessWidget {
       child: Scaffold(
         body: ListView(children: [
           listElement(context, title: "title", subtitle: "subtitle"),
+          listElement(context, title: "title1", subtitle: "subtitle1"),
         ]),
       ),
     );
@@ -19,8 +20,7 @@ class Species extends StatelessWidget {
       {required String subtitle, required String title}) {
     return InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: ((context) =>
-              const MyWidget(title: "A dog", subtitle: "A dog subtitle")))),
+          builder: ((context) => MyWidget(title: title, subtitle: subtitle)))),
       child: Card(
         child: ListTile(
           autofocus: true,
@@ -28,7 +28,6 @@ class Species extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             child: Image.network(
               "https://images.dog.ceo/breeds/sharpei/noel.jpg",
-              height: 100,
             ),
           ),
           title: Text(title),

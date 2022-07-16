@@ -1,7 +1,8 @@
-// ignore_for_file: unnecessary_const
-
-import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
+import 'package:leafy/homecomponents/drawer.dart';
+import 'package:leafy/homecomponents/family.dart';
+import 'package:leafy/homecomponents/genus.dart';
+import 'package:leafy/homecomponents/plant.dart';
 import 'package:leafy/homecomponents/species.dart';
 
 class Library extends StatefulWidget {
@@ -15,31 +16,19 @@ class _LibraryState extends State<Library> {
   late String drawerImage = "https://images.dog.ceo/breeds/sharpei/noel.jpg";
 
   @override
-  void initState() {
-    super.initState();
-    getDog();
-  }
-
-  getDog() async {
-    var response = await Dio().get("https://dog.ceo/api/breeds/image/random");
-    Map resp = response.data;
-    setState(() {
-      drawerImage = resp.entries.first.value;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        drawer: const TheDrawer(),
         body: const TabBarView(children: [
-          const Species(),
-          const Center(child: const Text("Genus")),
-          Center(child: const Text("Family")),
+          Plant(),
+          Genus(),
+          Family(),
         ]),
         appBar: AppBar(
-          title: const TabBar(
+          title: const Text("Plant Library"),
+          bottom: const TabBar(
             // indicatorColor: Colors.white,
             tabs: [
               Tab(

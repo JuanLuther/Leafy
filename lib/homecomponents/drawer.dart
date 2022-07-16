@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:leafy/login.dart';
 import 'package:leafy/singleton.dart';
 
 class TheDrawer extends StatefulWidget {
@@ -52,9 +53,9 @@ class _TheDrawerState extends State<TheDrawer> {
           Column(
             children: [
               listTile(icon: Icons.person, title: "Profile"),
-              listTile(icon: Icons.settings, title: "Settings"),
-              listTile(icon: Icons.notifications, title: "Notifications"),
-              listTile(icon: Icons.help, title: "Help"),
+              // listTile(icon: Icons.settings, title: "Settings"),
+              // listTile(icon: Icons.notifications, title: "Notifications"),
+              // listTile(icon: Icons.help, title: "Help"),
               listTile(icon: Icons.info, title: "About Us"),
               listTile(icon: Icons.logout, title: "Log Out"),
               SwitchListTile(
@@ -69,7 +70,12 @@ class _TheDrawerState extends State<TheDrawer> {
                           Get.changeTheme(ThemeData.dark())
                         else
                           Get.changeTheme(ThemeData.light())
-                      })
+                      }),
+              GestureDetector(
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const Login()))),
+                child: const Card(child: ListTile(title: Text("Logout"))),
+              )
             ],
           ),
         ],
